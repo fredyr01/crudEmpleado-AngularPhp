@@ -1,6 +1,7 @@
 <div class="card">
     <div class="card-header">
-        Empleados
+        Lista Empleados
+        <a class="btn btn-success" routerLink="/agregar-empleado"> Agregar nuevo empleado </a>
     </div>
     <div class="card-body">
         <table class="table">
@@ -13,12 +14,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>9</td>
-                    <td>Fredy</td>
-                    <td>fredy@gmail.com</td>
+                <tr *ngFor="let empleado of Empleados; let iControl=index">
+                    <td>{{empleado.id}}</td>
+                    <td>{{empleado.nombre}}</td>
+                    <td>{{empleado.correo}}</td>
                     <td>
-                        <a routerLink="/editar-empleado/1"> Editar </a> | Borrar
+                        <a class="btn btn-info" routerLink="/editar-empleado/{{empleado.id}}"> Editar </a> |
+                        <a class="btn btn-danger" (click)="borrarRegistro(empleado.id, iControl)" role="button">Borrar</a>
                     </td>
                 </tr>
             </tbody>
